@@ -1,0 +1,76 @@
+{
+    "name": "Taxi",
+    "maps": [
+        {
+            "name": "TaxiIranyitas",
+            "id": "c36c65ea-d00e-4faf-b7db-70a691db1fa3",
+            "actions": [
+                {
+                    "name": "Iranyitas",
+                    "type": "Button",
+                    "id": "9fcd1aab-a7e4-45e3-bfa6-57fdc81ebd51",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fek",
+                    "type": "Button",
+                    "id": "295ce6b7-3c5f-4ee6-990f-a9cdd03986ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "JobbEsBal",
+                    "id": "aa0dc48a-6697-4852-a951-61d886609756",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Iranyitas",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "4fbdb3b4-7a73-4f16-8014-6b152ca2d9fd",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Iranyitas",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "d9c8dcbe-dee7-4626-ae04-cbfca63a004e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Iranyitas",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e937c3ac-a0ab-40ec-ac1f-fffcb180b4c9",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fek",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
