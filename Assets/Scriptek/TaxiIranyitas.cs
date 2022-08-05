@@ -16,6 +16,7 @@ public class TaxiIranyitas : MonoBehaviour
     [SerializeField] GameObject marker;
     float speed;
     public bool insidePassenger;
+    public float lastMarkerPosition;
 
     private void Awake()
     {
@@ -95,11 +96,23 @@ public class TaxiIranyitas : MonoBehaviour
     float GetMarkerNewPosition(float passangerPosition)
     {
         float newPosition;
-        do
+        if (passangerPosition - 3 <= -6.85f)
         {
-            newPosition = Random.Range(-6.85f, 6.25f);
-        } while ((newPosition >= passangerPosition - 2 || newPosition <= passangerPosition + 2));
-        
+            newPosition = Random.Range(passangerPosition + 3, 6.25f);
+        }
+        else if (passangerPosition + 3 > 6.25f)
+        {
+            newPosition = Random.Range(-6.85f, passangerPosition - 3);
+        }
+        else if (Random.Range(1, 0) == 0)
+        {
+            newPosition = Random.Range(-6.85f, passangerPosition - 3);
+        }
+        else
+        {
+            newPosition = Random.Range(passangerPosition + 3, 6.25f);
+        }
+        lastMarkerPosition = newPosition;
         return newPosition;
     }
 }

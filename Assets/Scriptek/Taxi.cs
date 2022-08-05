@@ -44,6 +44,15 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""97c89c4a-5cb6-4ece-9c3e-ddbef58c3356"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +99,28 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                     ""action"": ""Fek"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcbec4a8-8f8e-4efc-93a7-d93619b8f55f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fa0ece5-08e9-4e58-9033-1af817855386"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +131,7 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
         m_TaxiIranyitas = asset.FindActionMap("TaxiIranyitas", throwIfNotFound: true);
         m_TaxiIranyitas_Iranyitas = m_TaxiIranyitas.FindAction("Iranyitas", throwIfNotFound: true);
         m_TaxiIranyitas_Fek = m_TaxiIranyitas.FindAction("Fek", throwIfNotFound: true);
+        m_TaxiIranyitas_Menu = m_TaxiIranyitas.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,12 +193,14 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
     private ITaxiIranyitasActions m_TaxiIranyitasActionsCallbackInterface;
     private readonly InputAction m_TaxiIranyitas_Iranyitas;
     private readonly InputAction m_TaxiIranyitas_Fek;
+    private readonly InputAction m_TaxiIranyitas_Menu;
     public struct TaxiIranyitasActions
     {
         private @Taxi m_Wrapper;
         public TaxiIranyitasActions(@Taxi wrapper) { m_Wrapper = wrapper; }
         public InputAction @Iranyitas => m_Wrapper.m_TaxiIranyitas_Iranyitas;
         public InputAction @Fek => m_Wrapper.m_TaxiIranyitas_Fek;
+        public InputAction @Menu => m_Wrapper.m_TaxiIranyitas_Menu;
         public InputActionMap Get() { return m_Wrapper.m_TaxiIranyitas; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -182,6 +216,9 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                 @Fek.started -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnFek;
                 @Fek.performed -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnFek;
                 @Fek.canceled -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnFek;
+                @Menu.started -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_TaxiIranyitasActionsCallbackInterface = instance;
             if (instance != null)
@@ -192,6 +229,9 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                 @Fek.started += instance.OnFek;
                 @Fek.performed += instance.OnFek;
                 @Fek.canceled += instance.OnFek;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -200,5 +240,6 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
     {
         void OnIranyitas(InputAction.CallbackContext context);
         void OnFek(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

@@ -17,7 +17,7 @@ public class Felveheto : MonoBehaviour
     public void RelocatePassenger()
     {
         spriteRenderer.enabled = true;
-        this.transform.position = new Vector3(Random.Range(-6.85f, 6.26f), this.transform.position.y);
+        this.transform.position = new Vector3(GetFelvehetoNewPosition(GameObject.FindGameObjectWithTag("Taxi").GetComponent<TaxiIranyitas>().lastMarkerPosition), this.transform.position.y);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -34,5 +34,26 @@ public class Felveheto : MonoBehaviour
                 collision.GetComponent<TaxiIranyitas>().MakeMarker();
             }
         }
+    }
+    float GetFelvehetoNewPosition(float lastMarkerPos)
+    {
+        float newPosition;
+        if (lastMarkerPos - 3 <= -6.85f)
+        {
+            newPosition = Random.Range(lastMarkerPos + 3, 6.25f);
+        }
+        else if (lastMarkerPos + 3 > 6.25f)
+        {
+            newPosition = Random.Range(-6.85f, lastMarkerPos - 3);
+        }
+        else if (Random.Range(1, 0) == 0)
+        {
+            newPosition = Random.Range(-6.85f, lastMarkerPos - 3);
+        }
+        else
+        {
+            newPosition = Random.Range(lastMarkerPos + 3, 6.25f);
+        }
+        return newPosition;
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Marker
   - Passanger
   - UiManager
+  - Pause
   layers:
   - Default
   - TransparentFX
