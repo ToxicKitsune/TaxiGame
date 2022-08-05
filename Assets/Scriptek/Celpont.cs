@@ -13,6 +13,7 @@ public class Celpont : MonoBehaviour
                 collision.GetComponent<TaxiIranyitas>().insidePassenger = false;
                 Debug.Log("Drop off");
                 GameObject.FindGameObjectWithTag("Passanger").GetComponent<Felveheto>().RelocatePassenger();
+                GameObject.FindGameObjectWithTag("UiManager").GetComponent<UiManager>().InceaseScore();
                 Destroy(gameObject);
             }
             else

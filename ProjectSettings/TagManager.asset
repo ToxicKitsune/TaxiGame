@@ -7,6 +7,7 @@ TagManager:
   - Taxi
   - Marker
   - Passanger
+  - UiManager
   layers:
   - Default
   - TransparentFX

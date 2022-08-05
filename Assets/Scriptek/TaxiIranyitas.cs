@@ -72,15 +72,34 @@ public class TaxiIranyitas : MonoBehaviour
             {
                 self.GetComponent<SpriteRenderer>().flipX = false;
             }
-            else self.GetComponent<SpriteRenderer>().flipX = true;
+            else if (rb2d.velocity.x < -0.2)
+            {
+                self.GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
     }
     public void MakeMarker()
     {
         if (insidePassenger)
         {
-            Instantiate(marker, new Vector3(Random.Range(-6.85f, 6.26f), -3.0f, 0), Quaternion.identity);
+            //First we get the passenger's old X position +-3
+            if (GameObject.FindGameObjectWithTag("Passanger").transform.position.x - 3f<=-6.85f)
+            {
+
+            }
+            Instantiate(marker, new Vector3(GetMarkerNewPosition(GameObject.FindGameObjectWithTag("Passanger").transform.position.x), -3.0f, 0),
+                Quaternion.identity);
         }
         else { Debug.Log("There are no passenger"); }
+    }
+    float GetMarkerNewPosition(float passangerPosition)
+    {
+        float newPosition;
+        do
+        {
+            newPosition = Random.Range(-6.85f, 6.25f);
+        } while ((newPosition >= passangerPosition - 2 || newPosition <= passangerPosition + 2));
+        
+        return newPosition;
     }
 }
