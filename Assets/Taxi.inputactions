@@ -22,15 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Menu",
-                    "type": "Button",
-                    "id": "97c89c4a-5cb6-4ece-9c3e-ddbef58c3356",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -77,10 +68,27 @@
                     "action": "Fek",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Manu",
+            "id": "693808a6-5e35-4750-bc4e-2d67d8a16f07",
+            "actions": [
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "8e4fabaa-4da3-461b-8fb5-f2ff5ec03fa5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "dcbec4a8-8f8e-4efc-93a7-d93619b8f55f",
+                    "id": "796bb6fd-32d3-4c62-b314-7e26d3f19e43",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -91,8 +99,19 @@
                 },
                 {
                     "name": "",
-                    "id": "8fa0ece5-08e9-4e58-9033-1af817855386",
+                    "id": "799fb841-cc4c-4ce3-89ff-bf7de50b4d4b",
                     "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e29971a1-9ca1-4b1a-a67f-80c5078510d6",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

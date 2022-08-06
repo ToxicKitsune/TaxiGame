@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class SimplePauseManu : MonoBehaviour
 {
+    [SerializeField] GameObject Pause;
     Taxi control;
     private void Awake()
     {
         control = new Taxi();
-        control.TaxiIranyitas.Menu.started += _ => Menu();
+        control.Manu.Menu.started += _ => Menu();
     }
     private void OnEnable()
     {
@@ -21,10 +23,22 @@ public class SimplePauseManu : MonoBehaviour
     }
     void Menu()
     {
-        this.gameObject.SetActive(!this.gameObject.activeSelf);
+        Debug.Log("Menu Open/Close");
+        Pause.SetActive(!Pause.activeSelf);
+        if (Pause.activeSelf)
+        {
+            Time.timeScale = 0;
+        }
+        else
+            Time.timeScale = 1;
+
     }
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
     }
 }

@@ -44,15 +44,6 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Menu"",
-                    ""type"": ""Button"",
-                    ""id"": ""97c89c4a-5cb6-4ece-9c3e-ddbef58c3356"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -99,10 +90,27 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                     ""action"": ""Fek"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""Manu"",
+            ""id"": ""693808a6-5e35-4750-bc4e-2d67d8a16f07"",
+            ""actions"": [
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e4fabaa-4da3-461b-8fb5-f2ff5ec03fa5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""dcbec4a8-8f8e-4efc-93a7-d93619b8f55f"",
+                    ""id"": ""796bb6fd-32d3-4c62-b314-7e26d3f19e43"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -113,8 +121,19 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8fa0ece5-08e9-4e58-9033-1af817855386"",
+                    ""id"": ""799fb841-cc4c-4ce3-89ff-bf7de50b4d4b"",
                     ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e29971a1-9ca1-4b1a-a67f-80c5078510d6"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -131,7 +150,9 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
         m_TaxiIranyitas = asset.FindActionMap("TaxiIranyitas", throwIfNotFound: true);
         m_TaxiIranyitas_Iranyitas = m_TaxiIranyitas.FindAction("Iranyitas", throwIfNotFound: true);
         m_TaxiIranyitas_Fek = m_TaxiIranyitas.FindAction("Fek", throwIfNotFound: true);
-        m_TaxiIranyitas_Menu = m_TaxiIranyitas.FindAction("Menu", throwIfNotFound: true);
+        // Manu
+        m_Manu = asset.FindActionMap("Manu", throwIfNotFound: true);
+        m_Manu_Menu = m_Manu.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -193,14 +214,12 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
     private ITaxiIranyitasActions m_TaxiIranyitasActionsCallbackInterface;
     private readonly InputAction m_TaxiIranyitas_Iranyitas;
     private readonly InputAction m_TaxiIranyitas_Fek;
-    private readonly InputAction m_TaxiIranyitas_Menu;
     public struct TaxiIranyitasActions
     {
         private @Taxi m_Wrapper;
         public TaxiIranyitasActions(@Taxi wrapper) { m_Wrapper = wrapper; }
         public InputAction @Iranyitas => m_Wrapper.m_TaxiIranyitas_Iranyitas;
         public InputAction @Fek => m_Wrapper.m_TaxiIranyitas_Fek;
-        public InputAction @Menu => m_Wrapper.m_TaxiIranyitas_Menu;
         public InputActionMap Get() { return m_Wrapper.m_TaxiIranyitas; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -216,9 +235,6 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                 @Fek.started -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnFek;
                 @Fek.performed -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnFek;
                 @Fek.canceled -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnFek;
-                @Menu.started -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnMenu;
-                @Menu.performed -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnMenu;
-                @Menu.canceled -= m_Wrapper.m_TaxiIranyitasActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_TaxiIranyitasActionsCallbackInterface = instance;
             if (instance != null)
@@ -229,17 +245,50 @@ public partial class @Taxi : IInputActionCollection2, IDisposable
                 @Fek.started += instance.OnFek;
                 @Fek.performed += instance.OnFek;
                 @Fek.canceled += instance.OnFek;
+            }
+        }
+    }
+    public TaxiIranyitasActions @TaxiIranyitas => new TaxiIranyitasActions(this);
+
+    // Manu
+    private readonly InputActionMap m_Manu;
+    private IManuActions m_ManuActionsCallbackInterface;
+    private readonly InputAction m_Manu_Menu;
+    public struct ManuActions
+    {
+        private @Taxi m_Wrapper;
+        public ManuActions(@Taxi wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Menu => m_Wrapper.m_Manu_Menu;
+        public InputActionMap Get() { return m_Wrapper.m_Manu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ManuActions set) { return set.Get(); }
+        public void SetCallbacks(IManuActions instance)
+        {
+            if (m_Wrapper.m_ManuActionsCallbackInterface != null)
+            {
+                @Menu.started -= m_Wrapper.m_ManuActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_ManuActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_ManuActionsCallbackInterface.OnMenu;
+            }
+            m_Wrapper.m_ManuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
             }
         }
     }
-    public TaxiIranyitasActions @TaxiIranyitas => new TaxiIranyitasActions(this);
+    public ManuActions @Manu => new ManuActions(this);
     public interface ITaxiIranyitasActions
     {
         void OnIranyitas(InputAction.CallbackContext context);
         void OnFek(InputAction.CallbackContext context);
+    }
+    public interface IManuActions
+    {
         void OnMenu(InputAction.CallbackContext context);
     }
 }
