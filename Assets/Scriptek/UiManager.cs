@@ -9,6 +9,10 @@ public class UiManager : MonoBehaviour
     [SerializeField] float countDownTimerMax;
     [SerializeField] GameObject gameOver;
 
+    [SerializeField] GameObject countDown;
+
+    float countDownFromFive = 6;
+    
     [SerializeField] TMP_Text highScore;
     int highScoreStore = 0;
 
@@ -40,14 +44,27 @@ public class UiManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        timer.text = countDownTimerMax.ToString();
-        countDownTimerMax -= Time.deltaTime;
-
+        
+        if (countDownFromFive <= 0)
+        {
+            timer.text = "Time: " + Mathf.Floor(countDownTimerMax).ToString();
+            countDownTimerMax -= Time.deltaTime;
+        }
+        else
+        {
+            countDownFromFive -= Time.deltaTime;
+            if (countDownFromFive<=0)
+            {
+                countDown.SetActive(false);
+                GameObject.FindGameObjectWithTag("Taxi").GetComponent<TaxiIranyitas>().enabled = true;
+            }else countDown.GetComponent<TMP_Text>().text = Mathf.Floor(countDownFromFive).ToString();
+        }
         if (countDownTimerMax<=0)
         {
             Debug.Log("GameOver");
             Time.timeScale = 0;
             gameOver.SetActive(true);
+            GameObject.FindGameObjectWithTag("EndGameScore").GetComponent<TMP_Text>().text = "Score:" + highScoreStore;
         }
         else
         {

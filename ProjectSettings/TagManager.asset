@@ -10,6 +10,7 @@ TagManager:
   - UiManager
   - Pause
   - GameOver
+  - EndGameScore
   layers:
   - Default
   - TransparentFX

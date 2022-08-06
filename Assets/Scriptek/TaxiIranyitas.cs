@@ -14,6 +14,7 @@ public class TaxiIranyitas : MonoBehaviour
     [SerializeField] float maxTaxiSpeed;
     [SerializeField] float taxiSpeed;
     [SerializeField] GameObject marker;
+    [SerializeField] GameObject smoke;
     float speed;
     public bool insidePassenger;
     public float lastMarkerPosition;
@@ -72,11 +73,27 @@ public class TaxiIranyitas : MonoBehaviour
             if (rb2d.velocity.x > 0.2)
             {
                 self.GetComponent<SpriteRenderer>().flipX = false;
+                smoke.transform.position= new Vector3(self.transform.position.x - 0.9f, smoke.transform.position.y, 0f);
+                smoke.transform.eulerAngles = new Vector3(
+                    smoke.transform.eulerAngles.x,
+                    270f,
+                    smoke.transform.eulerAngles.z
+                );
+                GetComponent<Animator>().Play("Wrom");
             }
             else if (rb2d.velocity.x < -0.2)
             {
                 self.GetComponent<SpriteRenderer>().flipX = true;
+
+                smoke.transform.position = new Vector3(self.transform.position.x + 0.9f, smoke.transform.position.y, 0f);
+                smoke.transform.eulerAngles = new Vector3(
+                    smoke.transform.eulerAngles.x,
+                    90f,
+                    smoke.transform.eulerAngles.z
+                );
+                GetComponent<Animator>().Play("Wrom");
             }
+            else { GetComponent<Animator>().Play("Idle"); }
         }
     }
     public void MakeMarker()
