@@ -9,6 +9,7 @@ TagManager:
   - Passanger
   - UiManager
   - Pause
+  - GameOver
   layers:
   - Default
   - TransparentFX

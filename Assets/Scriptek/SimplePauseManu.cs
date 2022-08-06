@@ -21,7 +21,7 @@ public class SimplePauseManu : MonoBehaviour
     {
         control.Disable();
     }
-    void Menu()
+    public void Menu()
     {
         Debug.Log("Menu Open/Close");
         Pause.SetActive(!Pause.activeSelf);
@@ -39,6 +39,7 @@ public class SimplePauseManu : MonoBehaviour
     }
     public void Restart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 }

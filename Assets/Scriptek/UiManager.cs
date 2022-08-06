@@ -5,6 +5,9 @@ using UnityEngine;
 using TMPro;
 public class UiManager : MonoBehaviour
 {
+    [SerializeField] TMP_Text timer;
+    [SerializeField] float countDownTimerMax;
+    [SerializeField] GameObject gameOver;
 
     [SerializeField] TMP_Text highScore;
     int highScoreStore = 0;
@@ -33,6 +36,22 @@ public class UiManager : MonoBehaviour
         if (highScoreStore < currentScoreStore)
         {
             SetHighScore();
+        }
+    }
+    void FixedUpdate()
+    {
+        timer.text = countDownTimerMax.ToString();
+        countDownTimerMax -= Time.deltaTime;
+
+        if (countDownTimerMax<=0)
+        {
+            Debug.Log("GameOver");
+            Time.timeScale = 0;
+            gameOver.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("GameInProgress");
         }
     }
 }
