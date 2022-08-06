@@ -100,11 +100,6 @@ public class TaxiIranyitas : MonoBehaviour
     {
         if (insidePassenger)
         {
-            //First we get the passenger's old X position +-3
-            if (GameObject.FindGameObjectWithTag("Passanger").transform.position.x - 3f<=-6.85f)
-            {
-
-            }
             Instantiate(marker, new Vector3(GetMarkerNewPosition(GameObject.FindGameObjectWithTag("Passanger").transform.position.x), -3.0f, 0),
                 Quaternion.identity);
         }

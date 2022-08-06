@@ -36,6 +36,7 @@ public class UiManager : MonoBehaviour
     public void InceaseScore()
     {
         currentScoreStore++;
+        countDownTimerMax++;
         currentScore.text = currentScoreStore.ToString();
         if (highScoreStore < currentScoreStore)
         {
