@@ -18,6 +18,7 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] TMP_Text currentScore;
     int currentScoreStore=0;
+    
     void Awake()
     {
         ScoreReset();
